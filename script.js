@@ -39,6 +39,18 @@ function mainFunction() {
     currentSongDetails.innerHTML = `<h1>${arr[selectedSong].songName}</h1>
                                     <h3>${arr[selectedSong].artist}</h3>`
 
+    if (selectedSong === 0) {
+        backward.style.opacity = 0.4
+    } else {
+        backward.style.opacity = 1
+    }
+
+    if (selectedSong === arr.length - 1) {
+        forward.style.opacity = 0.4
+    } else {
+        forward.style.opacity = 1
+    }
+
 }
 mainFunction()
 
@@ -69,19 +81,23 @@ play.addEventListener("click", function(){
 
 forward.addEventListener("click", function(){
     if(selectedSong < arr.length-1){
+        play.innerHTML = `<i class="ri-pause-mini-fill"></i>`
         selectedSong++
         mainFunction()
         audio.play()
+        flag = 1
     }else{
         forward.style.opacity = 0.4
     }
 })
 
 backward.addEventListener("click", function(){
+    play.innerHTML = `<i class="ri-pause-mini-fill"></i>`
     if(selectedSong > 0){
         selectedSong--
         mainFunction()
         audio.play()
+        flag = 0
     }else{
         backward.style.opacity = 0.4
     }
